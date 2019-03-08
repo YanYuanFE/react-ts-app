@@ -13,7 +13,7 @@ const config: Configuration = {
         path: path.resolve('./dist')
     },
     devServer: {
-        port: 4200,
+        port: 8080,
         inline: true
     },
     resolve: {
@@ -26,6 +26,10 @@ const config: Configuration = {
                 test: /\.tsx?$/,
                 loaders: ["babel-loader", "ts-loader"],
                 exclude: /node_modules/
+            },
+            {
+                test: /\.less$/,
+                loaders: ["style-loader", "css-loader", "less-loader"]
             }
         ]
     },

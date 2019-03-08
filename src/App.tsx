@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { Home } from "./home/Home";
 
 const App = () => {
-    const [ count, setCount ] = useState(0);
+    const [hasHome, toggleHome] = useState(true);
     return (
-        <div onClick={() => setCount(count + 1)}>
-            React TS APP {count}
+        <div>
+            React TS APP
+            <button onClick={() => toggleHome(!hasHome)}>toggle</button>
+            {hasHome && <Home />}
         </div>
     )
 }
