@@ -3,18 +3,14 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import path from "path";
 
 const config: Configuration = {
-    context: path.resolve(__dirname, "./"),
+    context: path.resolve(__dirname, "../"),
     entry: {
         app: "./index.tsx",
         vendor: ["react", "react-dom"]
     },
     output: {
         filename: "[name].[hash].js",
-        path: path.resolve('./dist')
-    },
-    devServer: {
-        port: 8080,
-        inline: true
+        path: path.resolve(process.cwd(), "dist")
     },
     resolve: {
         extensions: [".ts", ".tsx", ".js"],
@@ -26,10 +22,6 @@ const config: Configuration = {
                 test: /\.tsx?$/,
                 loaders: ["babel-loader", "ts-loader"],
                 exclude: /node_modules/
-            },
-            {
-                test: /\.less$/,
-                loaders: ["style-loader", "css-loader", "less-loader"]
             }
         ]
     },
@@ -37,8 +29,7 @@ const config: Configuration = {
         new HtmlWebpackPlugin({
             title: "React TypeScript App",
             template: "./index.html"
-        }),
-        new webpack.HotModuleReplacementPlugin({})
+        })
     ]
 }
 

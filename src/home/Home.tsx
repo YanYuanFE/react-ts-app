@@ -23,7 +23,7 @@ export const Home = () => {
     return (
         <div className="home">
             Home
-            <button onClick={() => setCount(count + 1)}>{count}</button>
+            <button onClick={() => setCount(count + 1)}>set {count}</button>
         </div>
     )
 }
