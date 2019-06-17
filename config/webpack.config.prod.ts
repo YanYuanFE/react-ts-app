@@ -1,7 +1,7 @@
 import webpack, { Configuration } from "webpack";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import TerserPlugin from "terser-webpack-plugin";
-import CleanWebpackPlugin from "clean-webpack-plugin";
+import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import merge from "webpack-merge";
 import commonConfig from "./webpack.config.common";
 

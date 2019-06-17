@@ -1,11 +1,13 @@
 import webpack, { Configuration } from "webpack";
 import merge from "webpack-merge";
+import path from "path";
 import commonConfig from "./webpack.config.common";
 
 const config: Configuration = merge(commonConfig, {
     mode: "development",
     devServer: {
-        port: 8082,
+        contentBase: path.join(__dirname, 'dist'),
+        port: 8080,
         inline: true
     },
     module: {
