@@ -16,10 +16,23 @@ const config: Configuration = {
     },
     resolve: {
         extensions: [".ts", ".tsx", ".js"],
-        modules: ["node_modules", path.resolve(__dirname, "src")]
+        modules: ["node_modules", path.resolve(__dirname, "src")],
+        alias: {
+            "react-dom": "@hot-loader/react-dom"
+        }
     },
     module: {
         rules: [
+            {
+                enforce: "pre",
+                test: /\.(j|t)sx?$/,
+                loader: "eslint-loader",
+                include: /src/,
+                exclude: /node_modules/,
+                options: {
+                  fix: true
+                }
+            },
             {
                 test: /\.(j|t)sx?$/,
                 use: 'babel-loader',
@@ -40,7 +53,8 @@ const config: Configuration = {
         // }),
         new HtmlWebpackPlugin({
             title: "React TypeScript App",
-            template: "./index.html"
+            template: "./public/index.html",
+            favicon: "./public/favicon.ico"
         })
     ]
 }
