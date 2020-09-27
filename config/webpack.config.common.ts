@@ -11,7 +11,7 @@ const config: Configuration = {
     vendor: ["react", "react-dom"]
   },
   output: {
-    filename: "[name].[hash].js",
+    filename: "[name].[fullhash].js",
     path: path.resolve(process.cwd(), "dist")
   },
   resolve: {

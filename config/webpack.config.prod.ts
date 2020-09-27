@@ -1,17 +1,27 @@
-import webpack, { Configuration } from "webpack";
+import { Configuration } from "webpack";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import TerserPlugin from "terser-webpack-plugin";
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import merge from "webpack-merge";
 import commonConfig from "./webpack.config.common";
 
-const config: Configuration = merge(commonConfig, {
+const prodConfig: Configuration = {
   mode: "production",
   module: {
     rules: [
       {
         test: /\.less$/,
-        loaders: [MiniCssExtractPlugin.loader, "css-loader", "less-loader"]
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader
+          },
+          {
+            loader: "css-loader"
+          },
+          {
+            loader: "less-loader"
+          }
+        ]
       }
     ]
   },
@@ -26,6 +36,7 @@ const config: Configuration = merge(commonConfig, {
         }
       }
     },
+    minimize: true,
     minimizer: [
       new TerserPlugin({
         cache: true,
@@ -41,6 +52,8 @@ const config: Configuration = merge(commonConfig, {
       chunkFilename: "[id].css"
     })
   ]
-});
+};
+
+const config: Configuration = merge(commonConfig, prodConfig);
 
 export default config;
