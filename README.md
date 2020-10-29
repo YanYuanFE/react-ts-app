@@ -7,11 +7,11 @@
 
 ## 技术栈
 
-*  React16
+*  React17
 *  React-Redux
 *  TypeScript
 *  React-Router
-*  Webpack 4.x
+*  Webpack 5.x
 
 ## 快速开始
 

@@ -3,6 +3,7 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import HappyPack from "happypack";
 import path from "path";
 import webpack = require("webpack");
+import ESLintPlugin from "eslint-webpack-plugin";
 
 const config: Configuration = {
   context: path.resolve(__dirname, "../"),
@@ -23,16 +24,6 @@ const config: Configuration = {
   },
   module: {
     rules: [
-      {
-        enforce: "pre",
-        test: /\.(j|t)sx?$/,
-        loader: "eslint-loader",
-        include: /src/,
-        exclude: /node_modules/,
-        options: {
-          fix: true
-        }
-      },
       {
         test: /\.(j|t)sx?$/,
         use: "babel-loader",
@@ -55,6 +46,10 @@ const config: Configuration = {
       title: "React TypeScript App",
       template: "./public/index.html",
       favicon: "./public/favicon.ico"
+    }),
+    new ESLintPlugin({
+      fix: true,
+      lintDirtyModulesOnly: true
     })
   ]
 };
