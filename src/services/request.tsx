@@ -5,12 +5,12 @@ axios.defaults.headers.post["Content-Type"] = "application/json;charset=UTF-8";
 
 axios.interceptors.request.use(
   (config: AxiosRequestConfig): AxiosRequestConfig => {
-    const token = localStorage.getItem("nvwaToken");
+    const token = localStorage.getItem("token");
     config.headers.Authorization = `Bearer ${token}`;
 
     return config;
   },
-  error => {
+  (error) => {
     return Promise.reject(error);
   }
 );

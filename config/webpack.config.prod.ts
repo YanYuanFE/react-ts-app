@@ -39,9 +39,7 @@ const prodConfig: Configuration = {
     minimize: true,
     minimizer: [
       new TerserPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: true
+        parallel: true
       })
     ]
   },

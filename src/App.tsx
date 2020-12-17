@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { hot } from "react-hot-loader/root";
 import { Home } from "./pages/home/Home";
 import "./styles/index.less";
 
@@ -16,4 +15,4 @@ const App = () => {
   );
 };
 
-export default hot(App);
+export default App;

@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useLayoutEffect } from "react";
-import "./home.less";
 
 export const Home = () => {
   const [count, setCount] = useState(0);
@@ -21,7 +20,7 @@ export const Home = () => {
   }, []);
   console.log(count, "update");
   return (
-    <div className="home">
+    <div className="home" css={{ color: "red" }}>
       Home
       <button onClick={() => setCount(count + 1)}>set {count}</button>
     </div>

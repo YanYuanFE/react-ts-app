@@ -1,5 +1,6 @@
 import webpack, { Configuration } from "webpack";
 import merge from "webpack-merge";
+import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 import path from "path";
 import commonConfig from "./webpack.config.common";
 
@@ -28,7 +29,10 @@ const config: Configuration = merge(commonConfig, {
       }
     ]
   },
-  plugins: [new webpack.HotModuleReplacementPlugin({})]
+  plugins: [
+    new webpack.HotModuleReplacementPlugin({}),
+    new ReactRefreshWebpackPlugin(),
+  ]
 });
 
 export default config;
