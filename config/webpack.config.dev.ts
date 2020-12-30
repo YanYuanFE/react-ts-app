@@ -1,4 +1,5 @@
-import webpack, { Configuration } from "webpack";
+import webpack from "webpack";
+import { Configuration } from "webpack-dev-server";
 import merge from "webpack-merge";
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 import path from "path";
@@ -23,7 +24,15 @@ const config: Configuration = merge(commonConfig, {
             loader: "css-loader"
           },
           {
-            loader: "less-loader"
+            loader: "less-loader",
+            options: {
+              lessOptions: {
+                strictMath: false,
+                noIeCompat: true,
+                javascriptEnabled: true,
+                // modifyVars: theme,
+              },
+            },
           }
         ]
       }
@@ -31,7 +40,7 @@ const config: Configuration = merge(commonConfig, {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin({}),
-    new ReactRefreshWebpackPlugin(),
+    new ReactRefreshWebpackPlugin({overlay: false}),
   ]
 });
 

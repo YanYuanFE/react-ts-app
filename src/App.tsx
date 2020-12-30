@@ -1,17 +1,57 @@
-import React, { useState } from "react";
-import { Home } from "./pages/home/Home";
+import React from "react";
+import zhCN from "antd/es/locale/zh_CN";
+import { Redirect, Route, Switch, HashRouter } from "react-router-dom";
+import { map } from "lodash";
+import { IRouter, routes } from "./common/router";
+import { ConfigProvider } from "antd";
 import "./styles/index.less";
+import { ThemeProvider } from "@emotion/react";
+import { theme } from "@/common/theme";
+
+const RouteWithSubRoutes = (route: IRouter) => {
+  const Comp = route.component;
+
+  return (
+    <Route
+      path={route.path}
+      render={(props) => {
+        return route.redirect ? (
+          <Redirect to={route.redirect} />
+        ) : Comp ? (
+          <Comp {...props} route={route}>
+            <DynamicRoute routes={route.routes} />
+          </Comp>
+        ) : (
+          <>
+            <DynamicRoute routes={route.routes} />
+          </>
+        );
+      }}
+    />
+  );
+};
+
+const DynamicRoute = ({ routes }: { routes?: IRouter[] }) => {
+  if (!routes) return null;
+
+  return (
+    <Switch>
+      {map(routes, (route, index) => {
+        return <RouteWithSubRoutes key={index} {...route} />;
+      })}
+    </Switch>
+  );
+};
 
 const App = () => {
-  const [hasHome, toggleHome] = useState(true);
-  const [count, setCount] = useState(0);
   return (
-    <div>
-      React TS APP
-      <button onClick={() => toggleHome(!hasHome)}>toggle</button>
-      <button onClick={() => setCount(count + 1)}>home {count}</button>
-      {hasHome && <Home />}
-    </div>
+    <HashRouter>
+      <ConfigProvider locale={zhCN}>
+        <ThemeProvider theme={theme}>
+          <DynamicRoute routes={routes} />
+        </ThemeProvider>
+      </ConfigProvider>
+    </HashRouter>
   );
 };
 

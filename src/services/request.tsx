@@ -1,6 +1,11 @@
 import axios, { AxiosRequestConfig, Method } from "axios";
 import { history } from "../store";
 
+export interface ICommonResponse {
+  code: number;
+  message: string;
+}
+
 axios.defaults.headers.post["Content-Type"] = "application/json;charset=UTF-8";
 
 axios.interceptors.request.use(
@@ -12,21 +17,21 @@ axios.interceptors.request.use(
   },
   (error) => {
     return Promise.reject(error);
-  }
+  },
 );
 
 axios.interceptors.response.use(
-  response => {
+  (response) => {
     const { authorization } = response.headers;
     authorization && localStorage.setItem("nvwaToken", authorization);
     return response;
   },
-  error => {
+  (error) => {
     if (error.response.status === 401) {
       history.push("/user/login");
     }
     return Promise.reject(error);
-  }
+  },
 );
 
 export const request = (url: string, data: any, method: Method) => {
@@ -34,12 +39,12 @@ export const request = (url: string, data: any, method: Method) => {
     axios({
       method,
       url,
-      data
+      data,
     })
-      .then(response => {
+      .then((response) => {
         resolve(response.data);
       })
-      .catch(err => {
+      .catch((err) => {
         reject(err);
       });
   });

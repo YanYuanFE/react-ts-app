@@ -29,7 +29,7 @@ export type ChatActionTypes = SendMessageAction | DeleteMessageAction;
 export function sendMessage(newMessage: Message) {
   return {
     type: SEND_MESSAGE,
-    payload: newMessage
+    payload: newMessage,
   };
 }
 
@@ -37,7 +37,7 @@ export function deleteMessage(timestamp: number) {
   return {
     type: DELETE_MESSAGE,
     meta: {
-      timestamp
-    }
+      timestamp,
+    },
   };
 }

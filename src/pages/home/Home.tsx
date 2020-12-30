@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useLayoutEffect } from "react";
 
-export const Home = () => {
+const Home = () => {
   const [count, setCount] = useState(0);
   useEffect(() => {
     console.log(count, "useEffect");
@@ -26,3 +26,5 @@ export const Home = () => {
     </div>
   );
 };
+
+export default Home;

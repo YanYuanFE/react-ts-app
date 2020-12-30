@@ -19,7 +19,9 @@ const config: Configuration = {
     extensions: [".ts", ".tsx", ".js"],
     modules: ["node_modules", path.resolve(__dirname, "src")],
     alias: {
-    }
+      "@": path.resolve(__dirname, "../src"),
+      lodash$: "lodash-es",
+    },
   },
   module: {
     rules: [
@@ -33,7 +35,14 @@ const config: Configuration = {
           }
         },
         exclude: /node_modules/
-      }
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif|svg)$/,
+        loader: "file-loader",
+        options: {
+          name: "images/[name].[ext]",
+        },
+      },
     ]
   },
   plugins: [
