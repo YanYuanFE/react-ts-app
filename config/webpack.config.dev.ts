@@ -10,7 +10,7 @@ const config: Configuration = merge(commonConfig, {
   devServer: {
     contentBase: path.join(__dirname, "dist"),
     port: 8080,
-    inline: true
+    inline: true,
   },
   module: {
     rules: [
@@ -18,10 +18,10 @@ const config: Configuration = merge(commonConfig, {
         test: /\.less$/,
         use: [
           {
-            loader: "style-loader"
+            loader: "style-loader",
           },
           {
-            loader: "css-loader"
+            loader: "css-loader",
           },
           {
             loader: "less-loader",
@@ -33,15 +33,12 @@ const config: Configuration = merge(commonConfig, {
                 // modifyVars: theme,
               },
             },
-          }
-        ]
-      }
-    ]
+          },
+        ],
+      },
+    ],
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin({}),
-    new ReactRefreshWebpackPlugin({overlay: false}),
-  ]
+  plugins: [new webpack.HotModuleReplacementPlugin({}), new ReactRefreshWebpackPlugin({ overlay: false })],
 });
 
 export default config;

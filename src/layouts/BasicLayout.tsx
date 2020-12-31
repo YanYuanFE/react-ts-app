@@ -1,5 +1,5 @@
 import ProLayout, { DefaultFooter, MenuDataItem, BasicLayoutProps as ProLayoutProps } from "@ant-design/pro-layout";
-import React, { ReactNode, useEffect } from "react";
+import React, { ReactNode } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Result, Button } from "antd";
 import Authorized from "@/components/Authorized";
@@ -33,7 +33,7 @@ const menuDataRender = (current: string | string[]) => (menuList: MenuDataItem[]
     return Authorized.check(item.authority, current, localItem, null) as MenuDataItem;
   });
 
-const defaultFooterDom = <DefaultFooter copyright={`${new Date().getFullYear()} 佳华科技`} links={[]} />;
+const defaultFooterDom = <DefaultFooter copyright={`${new Date().getFullYear()} Ant Design`} links={[]} />;
 
 export interface BasicLayoutProps extends ProLayoutProps {
   children: ReactNode;

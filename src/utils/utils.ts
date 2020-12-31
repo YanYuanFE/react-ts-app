@@ -38,7 +38,7 @@ export const getAuthorityFromRouter = <T extends IRouter>(router: T[] = [], path
   return undefined;
 };
 
-export const getRouteAuthority = (path: string, routeData: Route[]) => {
+export const getRouteAuthority = (path: string, routeData: IRouter[]) => {
   let authorities: string[] | string | undefined;
   routeData.forEach((route) => {
     // match prefix

@@ -13,17 +13,17 @@ const prodConfig: Configuration = {
         test: /\.less$/,
         use: [
           {
-            loader: MiniCssExtractPlugin.loader
+            loader: MiniCssExtractPlugin.loader,
           },
           {
-            loader: "css-loader"
+            loader: "css-loader",
           },
           {
-            loader: "less-loader"
-          }
-        ]
-      }
-    ]
+            loader: "less-loader",
+          },
+        ],
+      },
+    ],
   },
   optimization: {
     splitChunks: {
@@ -32,24 +32,24 @@ const prodConfig: Configuration = {
           name: "styles",
           test: /\.css$/,
           chunks: "all",
-          enforce: true
-        }
-      }
+          enforce: true,
+        },
+      },
     },
     minimize: true,
     minimizer: [
       new TerserPlugin({
-        parallel: true
-      })
-    ]
+        parallel: true,
+      }),
+    ],
   },
   plugins: [
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: "[name].[hash].css",
-      chunkFilename: "[id].css"
-    })
-  ]
+      chunkFilename: "[id].css",
+    }),
+  ],
 };
 
 const config: Configuration = merge(commonConfig, prodConfig);

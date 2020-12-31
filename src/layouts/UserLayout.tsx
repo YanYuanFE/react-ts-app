@@ -1,29 +1,22 @@
 import { DefaultFooter, getMenuData, getPageTitle, MenuDataItem } from "@ant-design/pro-layout";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import React from "react";
 import logo from "../assets/logo.svg";
 import { DocumentTitle } from "@/components/DocumentTitle";
 import proSettings from "@/common/setting";
+import { IRouter } from "@/common/router";
 
 export interface UserLayoutProps {
   breadcrumbNameMap: {
     [path: string]: MenuDataItem;
   };
+  route: IRouter;
 }
 
 const UserLayout: React.FC<UserLayoutProps> = (props) => {
-  const {
-    route = {
-      routes: [],
-    },
-  } = props;
+  const { route, children } = props;
   const { routes = [] } = route;
-  const {
-    children,
-    location = {
-      pathname: "",
-    },
-  } = props;
+  const location = useLocation();
   const { breadcrumb } = getMenuData(routes);
   const title = getPageTitle({
     pathname: location.pathname,

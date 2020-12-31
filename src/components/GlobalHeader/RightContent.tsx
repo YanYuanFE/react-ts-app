@@ -15,7 +15,6 @@ const ENVTagColor = {
   pre: "#87d068",
 };
 
-// eslint-disable-next-line react/prop-types
 const GlobalHeaderRight: React.FC<GlobalHeaderRightProps> = ({ theme, layout }) => {
   let className = styles.right;
 

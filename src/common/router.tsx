@@ -1,6 +1,6 @@
 import React, { ComponentType, lazy, ReactNode, Suspense } from "react";
 import { Spin } from "antd";
-import { PageLoading } from "@ant-design/pro-layout";
+import { createHashHistory } from "history";
 import {
   ContainerOutlined,
   DatabaseOutlined,
@@ -19,6 +19,8 @@ const Loading = (
     }}
   />
 );
+
+export const history = createHashHistory();
 
 export const load = <T extends ComponentType<any>>(factory: () => Promise<{ default: T }>) => {
   const Comp = lazy(factory);

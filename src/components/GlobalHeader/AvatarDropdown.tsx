@@ -3,7 +3,6 @@ import { Avatar, Menu, Spin } from "antd";
 import React from "react";
 import { useHistory } from "react-router-dom";
 import HeaderDropdown from "../HeaderDropdown";
-import styles from "./index.less";
 import avatar from "../../assets/logo.svg";
 
 const AvatarDropdown = ({ menu }: { menu?: boolean }) => {
@@ -30,7 +29,18 @@ const AvatarDropdown = ({ menu }: { menu?: boolean }) => {
   };
 
   const menuHeaderDropdown = (
-    <Menu className={styles.menu} selectedKeys={[]} onClick={onMenuClick}>
+    <Menu
+      css={{
+        ".anticon": {
+          marginRight: "8px",
+        },
+        ".ant-dropdown-menu-item": {
+          minWidth: "160px",
+        },
+      }}
+      selectedKeys={[]}
+      onClick={onMenuClick}
+    >
       {menu && (
         <>
           <Menu.Item key="settings">
@@ -49,16 +59,37 @@ const AvatarDropdown = ({ menu }: { menu?: boolean }) => {
   );
   return currentUser && currentUser.name ? (
     <HeaderDropdown overlay={menuHeaderDropdown}>
-      <span className={`${styles.action} ${styles.account}`}>
-        <Avatar size="small" className={styles.avatar} src={avatar} alt="avatar" />
-        <span className={`${styles.name} anticon`}>{currentUser.name}</span>
+      <span
+        css={(t) => ({
+          display: "flex",
+          alignItems: "center",
+          height: "100%",
+          padding: "0 12px",
+          cursor: "pointer",
+          transition: "all 0.3s",
+          color: t.colors.textColor,
+        })}
+      >
+        <Avatar
+          size="small"
+          css={(t) => ({
+            margin: "20px 0",
+            marginRight: 8,
+            color: t.colors.primary,
+            verticalAlign: "top",
+            backgroundColor: "rgba(255, 255, 255, 0.85)",
+          })}
+          src={avatar}
+          alt="avatar"
+        />
+        <span>{currentUser.name}</span>
       </span>
     </HeaderDropdown>
   ) : (
-    <span className={`${styles.action} ${styles.account}`}>
+    <span>
       <Spin
         size="small"
-        style={{
+        css={{
           marginLeft: 8,
           marginRight: 8,
         }}

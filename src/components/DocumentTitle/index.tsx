@@ -1,9 +1,9 @@
-import { useEffect, ReactNode } from "react";
+import React, { useEffect } from "react";
 
-export const DocumentTitle = ({ title, children }: { title: string; children: ReactNode }) => {
+export const DocumentTitle: React.FC<{ title: string }> = ({ title, children }) => {
   useEffect(() => {
     document.title = title;
   }, [title]);
 
-  return children;
+  return <>{children}</>;
 };

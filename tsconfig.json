@@ -2,14 +2,13 @@
   "compilerOptions": {
     "paths": {
       "*": [
-        "types/*",
-        "src/typing.d.ts"
+        "types/*"
       ],
       "@/*": [
         "src/*"
       ]
     },
-    "module": "commonjs",
+    "module": "esnext",
     "target": "es5",
     "lib": [
       "es5",
@@ -32,6 +31,7 @@
     "rootDir": "./",
     "baseUrl": "./",
     "skipLibCheck": true,
+    "declaration": true,
     "noEmitOnError": false,
     "emitDeclarationOnly": true,
     "outDir": ".tmp"

@@ -6,7 +6,6 @@ import LoginItem, { LoginItemProps } from "./LoginItem";
 
 import LoginSubmit from "./LoginSubmit";
 import LoginTab from "./LoginTab";
-import styles from "./index.less";
 
 export interface LoginProps {
   activeKey: string;

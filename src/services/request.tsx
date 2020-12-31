@@ -1,5 +1,5 @@
-import axios, { AxiosRequestConfig, Method } from "axios";
-import { history } from "../store";
+import axios, { AxiosPromise, AxiosRequestConfig, Method } from "axios";
+import { history } from "@/common/router";
 
 export interface ICommonResponse {
   code: number;
@@ -23,8 +23,8 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
   (response) => {
     const { authorization } = response.headers;
-    authorization && localStorage.setItem("nvwaToken", authorization);
-    return response;
+    authorization && localStorage.setItem("authToken", authorization);
+    return response.data;
   },
   (error) => {
     if (error.response.status === 401) {
@@ -34,30 +34,22 @@ axios.interceptors.response.use(
   },
 );
 
-export const request = (url: string, data: any, method: Method) => {
-  return new Promise((resolve, reject) => {
-    axios({
-      method,
-      url,
-      data,
-    })
-      .then((response) => {
-        resolve(response.data);
-      })
-      .catch((err) => {
-        reject(err);
-      });
+export const request = <T extends any>(url: string, data: any, method: Method): AxiosPromise<T> => {
+  return axios({
+    method,
+    url,
+    data,
   });
 };
 
-export const post = (url: string, data: any) => {
+export const post = <T extends any>(url: string, data: any): AxiosPromise<T> => {
   return request(url, data, "post");
 };
 
-export const put = (url: string, data: any) => {
+export const put = <T extends any>(url: string, data: any): AxiosPromise<T> => {
   return request(url, data, "put");
 };
 
-export const get = (url: string, data?: any) => {
+export const get = <T extends any>(url: string, data?: any): AxiosPromise<T> => {
   return request(url, data, "get");
 };

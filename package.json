@@ -5,7 +5,8 @@
   "main": "index.tsx",
   "scripts": {
     "start": "webpack-cli serve --config ./config/webpack.config.dev.ts",
-    "build": "webpack-cli --config ./config/webpack.config.prod.ts --progress --colors"
+    "build": "webpack-cli --config ./config/webpack.config.prod.ts --progress --colors",
+    "test": "tsc --incremental --diagnostics -p tsconfig.json"
   },
   "repository": {
     "type": "git",

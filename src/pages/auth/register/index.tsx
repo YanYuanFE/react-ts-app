@@ -1,7 +1,6 @@
-import { Button, Form, Input, message, Popover, Progress, Select, Tooltip } from "antd";
-import React, { useEffect, useState } from "react";
+import { Button, Form, Input, Popover, Progress, Select, Tooltip } from "antd";
+import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import styles from "./style.less";
 
 const FormItem = Form.Item;
 const { Option } = Select;
@@ -117,10 +116,10 @@ const Register = () => {
     const value = form.getFieldValue("password");
     const passwordStatus = getPasswordStatus();
     return value && value.length ? (
-      <div className={styles[`progress-${passwordStatus}`]}>
+      <div className={`progress-${passwordStatus}`}>
         <Progress
           status={passwordProgressMap[passwordStatus]}
-          className={styles.progress}
+          className={"progress"}
           strokeWidth={6}
           percent={value.length * 10 > 100 ? 100 : value.length * 10}
           showInfo={false}
@@ -186,7 +185,14 @@ const Register = () => {
         >
           <FormItem
             name="password"
-            className={form.getFieldValue("password") && form.getFieldValue("password").length > 0 && styles.password}
+            css={
+              form.getFieldValue("password")?.length > 0 && {
+                marginBottom: "24px",
+                ".ant-form-item-explain": {
+                  display: "none",
+                },
+              }
+            }
             rules={[
               {
                 validator: checkPassword,
@@ -246,7 +252,13 @@ const Register = () => {
           <Button size="large" loading={false} css={{ width: "50%" }} type="primary" htmlType="submit">
             注册
           </Button>
-          <Link className={styles.login} to="/auth/login">
+          <Link
+            css={{
+              float: "right",
+              lineHeight: "40px",
+            }}
+            to="/auth/login"
+          >
             登录
           </Link>
         </FormItem>

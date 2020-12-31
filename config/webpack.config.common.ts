@@ -9,11 +9,11 @@ const config: Configuration = {
   context: path.resolve(__dirname, "../"),
   entry: {
     app: "./src/index.tsx",
-    vendor: ["react", "react-dom"]
+    vendor: ["react", "react-dom"],
   },
   output: {
     filename: "[name].[contenthash].js",
-    path: path.resolve(process.cwd(), "dist")
+    path: path.resolve(process.cwd(), "dist"),
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js"],
@@ -31,10 +31,10 @@ const config: Configuration = {
           loader: "babel-loader",
           options: {
             cacheDirectory: true,
-            plugins: [isDevelopment && require.resolve("react-refresh/babel")].filter(Boolean)
-          }
+            plugins: [isDevelopment && require.resolve("react-refresh/babel")].filter(Boolean),
+          },
         },
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.(png|jpg|jpeg|gif|svg)$/,
@@ -43,19 +43,19 @@ const config: Configuration = {
           name: "images/[name].[ext]",
         },
       },
-    ]
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
       title: "React TypeScript App",
       template: "./public/index.html",
-      favicon: "./public/favicon.ico"
+      favicon: "./public/favicon.ico",
     }),
     new ESLintPlugin({
       fix: true,
-      lintDirtyModulesOnly: true
-    })
-  ]
+      lintDirtyModulesOnly: true,
+    }),
+  ],
 };
 
 export default config;
