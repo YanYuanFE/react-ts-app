@@ -8,6 +8,7 @@ import {
   RadarChartOutlined,
   SmileOutlined,
   SolutionOutlined,
+  HomeOutlined,
 } from "@ant-design/icons";
 
 const Loading = (
@@ -71,7 +72,7 @@ export const routes: IRouter[] = [
           {
             path: "/home",
             name: "首页",
-            icon: <DatabaseOutlined />,
+            icon: <HomeOutlined />,
             // authority: [],
             routes: [
               {

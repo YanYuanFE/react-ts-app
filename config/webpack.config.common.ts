@@ -7,13 +7,12 @@ const isDevelopment = process.env.NODE_ENV === "development";
 
 const config: Configuration = {
   context: path.resolve(__dirname, "../"),
-  entry: {
-    app: "./src/index.tsx",
-    vendor: ["react", "react-dom"],
-  },
+  entry: ["./src/index.tsx"],
   output: {
-    filename: "[name].[contenthash].js",
+    filename: "js/[name].[contenthash].js",
+    chunkFilename: "js/[name].bundle.js",
     path: path.resolve(process.cwd(), "dist"),
+    // publicPath: "./",
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js"],

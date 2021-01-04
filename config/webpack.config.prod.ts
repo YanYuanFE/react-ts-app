@@ -26,6 +26,7 @@ const prodConfig: Configuration = {
     ],
   },
   optimization: {
+    chunkIds: "named",
     splitChunks: {
       cacheGroups: {
         styles: {
@@ -46,8 +47,9 @@ const prodConfig: Configuration = {
   plugins: [
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
-      filename: "[name].[hash].css",
-      chunkFilename: "[id].css",
+      filename: "css/[name].[contenthash].css",
+      chunkFilename: "css/[id].[contenthash].css",
+      ignoreOrder: true,
     }),
   ],
 };
