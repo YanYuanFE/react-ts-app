@@ -1,10 +1,10 @@
 import { DefaultFooter, getMenuData, getPageTitle, MenuDataItem } from "@ant-design/pro-layout";
 import { Link, useLocation } from "react-router-dom";
 import React from "react";
-import logo from "../assets/logo.svg";
 import { DocumentTitle } from "@/components/DocumentTitle";
 import proSettings from "@/common/setting";
 import { IRouter } from "@/common/router";
+import logo from "../assets/logo.svg";
 
 export interface UserLayoutProps {
   breadcrumbNameMap: {
