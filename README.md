@@ -8,11 +8,11 @@
 ## 技术栈
 
 *  React17
-*  React-Redux
+*  unstated-next
 *  TypeScript
 *  React-Router
 *  Webpack 5.x
-*  emotion 11
+*  emotion 11 (CSS in JS)
 
 ## 快速开始
 
