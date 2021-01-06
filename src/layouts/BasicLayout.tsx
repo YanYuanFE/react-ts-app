@@ -82,13 +82,13 @@ const BasicLayout = (props: BasicLayoutProps) => {
         return first ? <Link to={paths.join("/")}>{route.breadcrumbName}</Link> : <span>{route.breadcrumbName}</span>;
       }}
       footerRender={() => defaultFooterDom}
-      menuDataRender={menuDataRender(user!.character)}
+      menuDataRender={menuDataRender(user?.character || "")}
       rightContentRender={() => <RightContent theme={defaultSettings.navTheme} layout={defaultSettings.layout} />}
       {...props}
       route={props.route}
       {...defaultSettings}
     >
-      <Authorized authority={authorized.authority} currentAuthority={user!.character} noMatch={noMatch}>
+      <Authorized authority={authorized.authority} currentAuthority={user?.character || ""} noMatch={noMatch}>
         {children}
       </Authorized>
     </ProLayout>

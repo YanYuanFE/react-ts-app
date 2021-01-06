@@ -1,6 +1,7 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import { Redirect } from "react-router-dom";
 import { stringify } from "querystring";
+import { UserProvider } from "@/contexts/user";
 
 const SecurityLayout: React.FC<any> = ({ children }) => {
   // state = {
@@ -43,7 +44,11 @@ const SecurityLayout: React.FC<any> = ({ children }) => {
     return <Redirect to="/" />;
   }
 
-  return children;
+  return (
+    <UserProvider>
+      {children}
+    </UserProvider>
+  );
 };
 
 export default SecurityLayout;
