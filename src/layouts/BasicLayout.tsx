@@ -7,6 +7,8 @@ import RightContent from "@/components/GlobalHeader/RightContent";
 import { getAuthorityFromRouter } from "@/utils/utils";
 import logo from "@/assets/logo.svg";
 import defaultSettings from "@/common/setting";
+import { useUserContainer } from "@/contexts/user";
+import { IRouter } from "@/common/router";
 
 const noMatch = (
   <Result
@@ -38,23 +40,21 @@ const defaultFooterDom = <DefaultFooter copyright={`${new Date().getFullYear()} 
 export interface BasicLayoutProps extends ProLayoutProps {
   children: ReactNode;
   location: { pathname: string };
-  route: ProLayoutProps["route"] & {
-    authority: string[];
-  };
+  route: IRouter;
 }
 
 const BasicLayout = (props: BasicLayoutProps) => {
   const history = useHistory();
-  const currentUser = {};
-  console.log(props);
+  const { user } = useUserContainer();
   const {
     children,
     location = {
       pathname: "/",
     },
+    route,
   } = props;
 
-  const authorized = getAuthorityFromRouter(props.route.routes, location.pathname || "/") || {
+  const authorized = getAuthorityFromRouter(route.routes, location.pathname || "/") || {
     authority: undefined,
   };
 
@@ -82,13 +82,13 @@ const BasicLayout = (props: BasicLayoutProps) => {
         return first ? <Link to={paths.join("/")}>{route.breadcrumbName}</Link> : <span>{route.breadcrumbName}</span>;
       }}
       footerRender={() => defaultFooterDom}
-      menuDataRender={menuDataRender(currentUser.character)}
+      menuDataRender={menuDataRender(user!.character)}
       rightContentRender={() => <RightContent theme={defaultSettings.navTheme} layout={defaultSettings.layout} />}
       {...props}
       route={props.route}
       {...defaultSettings}
     >
-      <Authorized authority={authorized.authority} currentAuthority={currentUser.character} noMatch={noMatch}>
+      <Authorized authority={authorized.authority} currentAuthority={user!.character} noMatch={noMatch}>
         {children}
       </Authorized>
     </ProLayout>

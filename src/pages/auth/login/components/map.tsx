@@ -2,7 +2,12 @@ import { LockTwoTone, MailTwoTone, MobileTwoTone, UserOutlined } from "@ant-desi
 import React from "react";
 import styles from "./index.less";
 
-export default {
+const ItemMap: {
+  [k: string]: {
+    props: { [k: string]: any };
+    rules: any[];
+  };
+} = {
   UserName: {
     props: {
       size: "large",
@@ -70,3 +75,5 @@ export default {
     ],
   },
 };
+
+export default ItemMap;

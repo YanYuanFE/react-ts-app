@@ -1,4 +1,4 @@
-import axios, { AxiosPromise, AxiosRequestConfig, Method } from "axios";
+import axios, { AxiosPromise, AxiosRequestConfig, AxiosResponse, Method } from "axios";
 import { history } from "@/common/router";
 
 export interface ICommonResponse {
@@ -21,7 +21,7 @@ axios.interceptors.request.use(
 );
 
 axios.interceptors.response.use(
-  (response) => {
+  (response: AxiosResponse): AxiosResponse => {
     const { authorization } = response.headers;
     authorization && localStorage.setItem("authToken", authorization);
     return response.data;
@@ -34,22 +34,22 @@ axios.interceptors.response.use(
   },
 );
 
-export const request = <T extends any>(url: string, data: any, method: Method): AxiosPromise<T> => {
+export const request = <T extends any>(url: string, data: any, method: Method) => {
   return axios({
     method,
     url,
     data,
-  });
+  }) as Promise<T>;
 };
 
-export const post = <T extends any>(url: string, data: any): AxiosPromise<T> => {
-  return request(url, data, "post");
+export const post = <T extends any>(url: string, data: any) => {
+  return request<T>(url, data, "post");
 };
 
-export const put = <T extends any>(url: string, data: any): AxiosPromise<T> => {
-  return request(url, data, "put");
+export const put = <T extends any>(url: string, data: any) => {
+  return request<T>(url, data, "put");
 };
 
-export const get = <T extends any>(url: string, data?: any): AxiosPromise<T> => {
-  return request(url, data, "get");
+export const get = <T extends any>(url: string, data?: any) => {
+  return request<T>(url, data, "get");
 };

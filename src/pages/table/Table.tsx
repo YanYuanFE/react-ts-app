@@ -5,7 +5,7 @@ import type { ProDescriptionsItemProps } from "@ant-design/pro-descriptions";
 import ProDescriptions from "@ant-design/pro-descriptions";
 import type { ProColumns } from "@ant-design/pro-table";
 import ProTable, { TableDropdown } from "@ant-design/pro-table";
-import { request } from "@/services/request";
+import { get } from "@/services/request";
 
 type GithubIssueItem = {
   url: string;
@@ -124,7 +124,7 @@ const Table = () => {
           columns={columns}
           type={type as "table"}
           request={async (params = {}) =>
-            request<{
+            get<{
               data: GithubIssueItem[];
             }>("https://proapi.azurewebsites.net/github/issues", {
               params,
@@ -151,7 +151,7 @@ const Table = () => {
           }}
           columns={columns as ProDescriptionsItemProps<GithubIssueItem>[]}
           request={async (params) => {
-            const msg = await request<{
+            const msg = await get<{
               data: GithubIssueItem[];
             }>("https://proapi.azurewebsites.net/github/issues", {
               params,

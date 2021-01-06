@@ -29,7 +29,7 @@ interface LoginType extends React.FC<LoginProps> {
 const Login: LoginType = (props) => {
   const { className, activeKey: type, onTabChange: setType } = props;
   const [tabs, setTabs] = useState<string[]>([]);
-  const [active, setActive] = useState({});
+  const [active, setActive] = useState<{ [k: string]: Array<{ [key: string]: string } | string> }>({});
   const TabChildren: React.ReactComponentElement<typeof LoginTab>[] = [];
   const otherChildren: React.ReactElement<unknown>[] = [];
   React.Children.forEach(

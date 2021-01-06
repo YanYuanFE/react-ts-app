@@ -4,9 +4,10 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import HeaderDropdown from "../HeaderDropdown";
 import avatar from "../../assets/logo.svg";
+import { useUserContainer } from "@/contexts/user";
 
 const AvatarDropdown = ({ menu }: { menu?: boolean }) => {
-  const currentUser = {};
+  const { user } = useUserContainer();
   const history = useHistory();
   const onMenuClick = (event: {
     key: React.Key;
@@ -57,7 +58,7 @@ const AvatarDropdown = ({ menu }: { menu?: boolean }) => {
       </Menu.Item>
     </Menu>
   );
-  return currentUser && currentUser.name ? (
+  return user?.name ? (
     <HeaderDropdown overlay={menuHeaderDropdown}>
       <span
         css={(t) => ({
@@ -82,7 +83,7 @@ const AvatarDropdown = ({ menu }: { menu?: boolean }) => {
           src={avatar}
           alt="avatar"
         />
-        <span>{currentUser.name}</span>
+        <span>{user.name}</span>
       </span>
     </HeaderDropdown>
   ) : (
