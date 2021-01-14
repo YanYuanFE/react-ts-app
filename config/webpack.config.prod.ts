@@ -20,6 +20,13 @@ const prodConfig: Configuration = {
           },
           {
             loader: "less-loader",
+            options: {
+              lessOptions: {
+                strictMath: false,
+                noIeCompat: true,
+                javascriptEnabled: true,
+              },
+            },
           },
         ],
       },

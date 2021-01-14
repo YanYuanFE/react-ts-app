@@ -5,7 +5,7 @@
   "main": "index.tsx",
   "scripts": {
     "start": "webpack serve --progress --config ./config/webpack.config.dev.ts",
-    "build": "webpack-cli --config ./config/webpack.config.prod.ts --progress --colors",
+    "build": "webpack-cli --progress --config ./config/webpack.config.prod.ts",
     "test": "tsc --incremental --diagnostics -p tsconfig.json"
   },
   "repository": {
@@ -38,6 +38,7 @@
     "immer": "^8.0.0",
     "loadash": "^1.0.0",
     "lodash-es": "^4.17.20",
+    "npm-check-updates": "^10.2.5",
     "polished": "^4.0.5",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",

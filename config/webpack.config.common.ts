@@ -12,7 +12,7 @@ const config: Configuration = {
     filename: "js/[name].[contenthash].js",
     chunkFilename: "js/[name].bundle.js",
     path: path.resolve(process.cwd(), "dist"),
-    // publicPath: "./",
+    publicPath: "./",
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js"],
