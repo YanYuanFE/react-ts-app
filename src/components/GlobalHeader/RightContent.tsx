@@ -14,14 +14,17 @@ const ENVTagColor = {
 };
 
 const GlobalHeaderRight: React.FC<GlobalHeaderRightProps> = ({ theme, layout }) => {
-  let className = styles.right;
-
-  if (theme === "dark" && layout === "top") {
-    className = `${styles.right}  ${styles.dark}`;
-  }
 
   return (
-    <div className={className}>
+    <div
+      css={{
+        display: "flex",
+        float: "right",
+        height: "48px",
+        marginLeft: "auto",
+        overflow: "hidden",
+      }}
+    >
       <Avatar menu />
     </div>
   );

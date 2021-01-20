@@ -8,9 +8,7 @@ import commonConfig from "./webpack.config.common";
 const config: Configuration = merge(commonConfig, {
   mode: "development",
   devServer: {
-    contentBase: path.resolve(process.cwd(), "dist"),
     port: 8080,
-    inline: false,
     compress: true,
     hot: true,
   },
