@@ -46,9 +46,7 @@ const prodConfig: Configuration = {
     },
     minimize: true,
     minimizer: [
-      new TerserPlugin({
-        parallel: true,
-      }),
+      // new TerserPlugin(),
     ],
   },
   plugins: [

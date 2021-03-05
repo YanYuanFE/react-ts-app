@@ -1,7 +1,6 @@
 import { DropDownProps } from "antd/es/dropdown";
 import { Dropdown } from "antd";
 import React from "react";
-import styles from "./index.less";
 
 declare type OverlayFunc = () => React.ReactNode;
 

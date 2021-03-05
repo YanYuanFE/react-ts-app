@@ -10,6 +10,7 @@ export const theme = {
     headingColor: tint(0.2, black),
     textColorSecondary: tint(0.55, black),
     textColor: tint(0.85, black),
+    disabledColor: tint(0.25, black),
     primary: "#1890ff",
     success: succesColor,
     warning: "#faad14",

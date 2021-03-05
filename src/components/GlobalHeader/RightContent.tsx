@@ -1,7 +1,6 @@
 import { Settings as ProSettings } from "@ant-design/pro-layout";
 import React from "react";
 import Avatar from "./AvatarDropdown";
-import styles from "./index.less";
 
 export interface GlobalHeaderRightProps extends Partial<ProSettings> {
   theme?: ProSettings["navTheme"] | "realDark";

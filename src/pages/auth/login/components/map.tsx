@@ -1,6 +1,5 @@
 import { LockTwoTone, MailTwoTone, MobileTwoTone, UserOutlined } from "@ant-design/icons";
 import React from "react";
-import styles from "./index.less";
 
 const ItemMap: {
   [k: string]: {
@@ -14,10 +13,10 @@ const ItemMap: {
       id: "userName",
       prefix: (
         <UserOutlined
-          style={{
-            color: "#1890ff",
-          }}
-          className={styles.prefixIcon}
+          css={t => ({
+            color: t.colors.disabledColor,
+            fontSize: t.fontSizes.base,
+          })}
         />
       ),
       placeholder: "admin",
@@ -32,7 +31,10 @@ const ItemMap: {
   Password: {
     props: {
       size: "large",
-      prefix: <LockTwoTone className={styles.prefixIcon} />,
+      prefix: <LockTwoTone css={t => ({
+        color: t.colors.disabledColor,
+        fontSize: t.fontSizes.base,
+      })} />,
       type: "password",
       id: "password",
       placeholder: "888888",
@@ -47,7 +49,10 @@ const ItemMap: {
   Mobile: {
     props: {
       size: "large",
-      prefix: <MobileTwoTone className={styles.prefixIcon} />,
+      prefix: <MobileTwoTone css={t => ({
+        color: t.colors.disabledColor,
+        fontSize: t.fontSizes.base,
+      })} />,
       placeholder: "mobile number",
     },
     rules: [
@@ -64,7 +69,10 @@ const ItemMap: {
   Captcha: {
     props: {
       size: "large",
-      prefix: <MailTwoTone className={styles.prefixIcon} />,
+      prefix: <MailTwoTone css={t => ({
+        color: t.colors.disabledColor,
+        fontSize: t.fontSizes.base,
+      })} />,
       placeholder: "captcha",
     },
     rules: [
