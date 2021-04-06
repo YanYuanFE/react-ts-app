@@ -67,12 +67,10 @@ const prodConfig: Configuration = {
       },
     },
     minimize: true,
-    minimizer: [
-      new TerserPlugin(),
-    ] as any[],
+    minimizer: [new TerserPlugin()] as any[],
   },
   plugins: [
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin() as any,
     new MiniCssExtractPlugin({
       filename: "css/[name].[contenthash].css",
       chunkFilename: "css/[id].[contenthash].css",

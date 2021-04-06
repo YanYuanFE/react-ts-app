@@ -5,7 +5,7 @@ import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 import path from "path";
 import commonConfig from "./webpack.config.common";
 
-const config: Configuration = merge(commonConfig, {
+const config = merge(commonConfig, {
   mode: "development",
   devServer: {
     port: 8080,
