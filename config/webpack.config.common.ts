@@ -35,6 +35,14 @@ const config: Configuration = {
         },
         exclude: /node_modules/,
       },
+      // {
+      //   test: /\.(j|t)sx?$/,
+      //   exclude: /(node_modules|bower_components)/,
+      //   use: {
+      //     // `.swcrc` can be used to configure swc
+      //     loader: "swc-loader",
+      //   },
+      // },
       {
         test: /\.(png|jpg|jpeg|gif|svg)$/,
         loader: "file-loader",

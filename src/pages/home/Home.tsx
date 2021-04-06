@@ -1,4 +1,7 @@
 import React, { useState, useEffect, useLayoutEffect } from "react";
+import { DatePicker, Space } from "antd";
+
+const { RangePicker } = DatePicker;
 
 const Home = () => {
   const [count, setCount] = useState(0);
@@ -23,6 +26,13 @@ const Home = () => {
     <div className="home" css={{ color: "red" }}>
       Home
       <button onClick={() => setCount(count + 1)}>set {count}</button>
+      <Space direction="vertical" size={12}>
+        <RangePicker />
+        <RangePicker showTime />
+        <RangePicker picker="week" />
+        <RangePicker picker="month" />
+        <RangePicker picker="year" />
+      </Space>
     </div>
   );
 };
