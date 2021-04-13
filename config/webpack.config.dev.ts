@@ -2,8 +2,7 @@ import webpack from "webpack";
 import { Configuration } from "webpack-dev-server";
 import merge from "webpack-merge";
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
-import path from "path";
-import commonConfig from "./webpack.config.common";
+import commonConfig, { resolve } from "./webpack.config.common";
 
 const config = merge(commonConfig, {
   mode: "development",
@@ -11,6 +10,12 @@ const config = merge(commonConfig, {
     port: 8080,
     compress: true,
     hot: true,
+    dev: {
+      publicPath: "./",
+    },
+    static: {
+      directory: resolve("./dist"),
+    },
   },
   module: {
     rules: [
@@ -39,6 +44,6 @@ const config = merge(commonConfig, {
     ],
   },
   plugins: [new webpack.HotModuleReplacementPlugin({}), new ReactRefreshWebpackPlugin({ overlay: false })],
-});
+} as Configuration);
 
 export default config;

@@ -5,20 +5,24 @@ import ESLintPlugin from "eslint-webpack-plugin";
 
 const isDevelopment = process.env.NODE_ENV === "development";
 
+export function resolve(dir: string) {
+  return path.join(__dirname, "..", dir);
+}
+
 const config: Configuration = {
   context: path.resolve(__dirname, "../"),
   entry: ["./src/index.tsx"],
   output: {
     filename: "js/[name].[contenthash].js",
     chunkFilename: "js/[name].bundle.js",
-    path: path.resolve(process.cwd(), "dist"),
-    // publicPath: "./",
+    path: resolve("./dist"),
+    publicPath: "./",
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js"],
-    modules: ["node_modules", path.resolve(__dirname, "src")],
+    modules: ["node_modules", resolve("./src")],
     alias: {
-      "@": path.resolve(__dirname, "../src"),
+      "@": resolve("./src"),
       lodash$: "lodash-es",
     },
   },
