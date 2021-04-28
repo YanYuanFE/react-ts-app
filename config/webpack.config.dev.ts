@@ -2,7 +2,10 @@ import webpack from "webpack";
 import { Configuration } from "webpack-dev-server";
 import merge from "webpack-merge";
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
+import SpeedMeasurePlugin from "speed-measure-webpack-plugin";
 import commonConfig, { resolve } from "./webpack.config.common";
+
+const smp = new SpeedMeasurePlugin();
 
 const config = merge(commonConfig, {
   mode: "development",
@@ -46,4 +49,4 @@ const config = merge(commonConfig, {
   plugins: [new webpack.HotModuleReplacementPlugin({}), new ReactRefreshWebpackPlugin({ overlay: false })],
 } as Configuration);
 
-export default config;
+export default smp.wrap(config);
