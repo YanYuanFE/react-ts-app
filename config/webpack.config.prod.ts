@@ -15,6 +15,7 @@ const vendorGroups: { [k: string]: RegExp } = {
 
 const prodConfig: Configuration = {
   mode: "production",
+  devtool: "cheap-module-source-map",
   module: {
     rules: [
       {

@@ -9,19 +9,43 @@ const smp = new SpeedMeasurePlugin();
 
 const config = merge(commonConfig, {
   mode: "development",
+  devtool: "eval-cheap-module-source-map",
+  cache: {
+    type: "filesystem",
+    buildDependencies: {
+      config: [__filename], // 当构建依赖的config文件（通过 require 依赖）内容发生变化时，缓存失效
+    },
+  },
   devServer: {
     port: 8080,
     compress: true,
     hot: true,
     dev: {
-      publicPath: "./",
+      // writeToDisk: true,
+      publicPath: resolve("./dist"),
     },
-    static: {
-      directory: resolve("./dist"),
-    },
+    static: false,
+    // static: {
+    //   staticOptions: {
+    //     contentBase: resolve("./dist"),
+    //   },
+    //   directory: resolve("./dist/static"),
+    // },
+    setupExitSignals: true,
   },
   module: {
     rules: [
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: "style-loader",
+          },
+          {
+            loader: "css-loader",
+          },
+        ],
+      },
       {
         test: /\.less$/,
         use: [
@@ -49,4 +73,6 @@ const config = merge(commonConfig, {
   plugins: [new webpack.HotModuleReplacementPlugin({}), new ReactRefreshWebpackPlugin({ overlay: false })],
 } as Configuration);
 
-export default smp.wrap(config);
+// export default smp.wrap(config);
+
+export default config;

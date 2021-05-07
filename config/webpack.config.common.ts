@@ -10,12 +10,12 @@ export function resolve(dir: string) {
 }
 
 const config: Configuration = {
-  context: path.resolve(__dirname, "../"),
-  entry: ["./src/index.tsx"],
+  context: resolve("./"),
+  entry: resolve("./src/index.tsx"),
   output: {
     filename: "js/[name].[contenthash].js",
     chunkFilename: "js/[name].bundle.js",
-    path: resolve("./dist"),
+    path: resolve("../dist"),
     publicPath: "./",
   },
   resolve: {
@@ -29,7 +29,7 @@ const config: Configuration = {
   module: {
     rules: [
       {
-        test: /\.(j|t)sx?$/,
+        test: /\.(js|jsx|ts|tsx)$/,
         use: {
           loader: "babel-loader",
           options: {
@@ -58,9 +58,10 @@ const config: Configuration = {
   },
   plugins: [
     new HtmlWebpackPlugin({
+      filename: "index.html",
       title: "React TypeScript App",
-      template: "./public/index.html",
-      favicon: "./public/favicon.ico",
+      template: resolve("./public/index.html"),
+      favicon: resolve("./public/favicon.ico"),
     }),
     new ESLintPlugin({
       fix: true,

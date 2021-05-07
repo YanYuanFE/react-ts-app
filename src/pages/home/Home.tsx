@@ -24,7 +24,7 @@ const Home = () => {
   console.log(count, "update");
   return (
     <div className="home" css={{ color: "red" }}>
-      Home
+      Home 123
       <button onClick={() => setCount(count + 1)}>set {count}</button>
       <Space direction="vertical" size={12}>
         <RangePicker />
