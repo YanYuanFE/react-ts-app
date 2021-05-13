@@ -16,7 +16,7 @@ const config: Configuration = {
     filename: "js/[name].[contenthash].js",
     chunkFilename: "js/[name].bundle.js",
     path: resolve("../dist"),
-    publicPath: "./",
+    // publicPath: "./",
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js"],
