@@ -40,7 +40,9 @@ const Login = () => {
   });
 
   const handleSubmit = (values: { [key: string]: any }) => {
-    run(values as LoginParams);
+    // run(values as LoginParams);
+    localStorage.setItem("x-token", "user");
+    history.replace("/");
   };
 
   return (
