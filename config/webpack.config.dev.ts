@@ -21,7 +21,7 @@ const config = merge(commonConfig, {
     port: 8080,
     compress: true,
     hot: true,
-    contentBase: path.resolve(__dirname, "../dist"),
+    // contentBase: path.resolve(__dirname, "../dist"),
     // contentBase: resolve("./dist"),
     // publicPath: "./",
     // dev: {
@@ -75,7 +75,7 @@ const config = merge(commonConfig, {
     ],
   },
   plugins: [new ReactRefreshWebpackPlugin({ overlay: false })],
-} as Configuration);
+});
 
 // export default smp.wrap(config);
 
