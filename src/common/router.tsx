@@ -35,7 +35,7 @@ export const load = <T extends ComponentType<any>>(factory: () => Promise<{ defa
 };
 
 export interface IRouter {
-  path: string;
+  path?: string;
   redirect?: string;
   component?: ComponentType<any>;
   icon?: ReactNode;
@@ -43,93 +43,69 @@ export interface IRouter {
   name?: string;
   authority?: string[];
   target?: string;
+  index?: boolean;
 }
 
 export const routes: IRouter[] = [
   {
-    path: "/auth",
+    path: "auth",
     component: load(() => import("../layouts/UserLayout")),
     routes: [
       {
         name: "登录",
-        path: "/auth/login",
+        path: "login",
         component: load(() => import("../pages/auth/login")),
       },
       {
         name: "注册",
-        path: "/auth/register",
+        path: "register",
         component: load(() => import("../pages/auth/register")),
       },
     ],
   },
   {
     path: "/",
-    component: load(() => import("../layouts/SecurityLayout")),
+    component: load(() => import("../layouts/BasicLayout")),
     routes: [
       {
-        path: "/",
-        component: load(() => import("../layouts/BasicLayout")),
+        path: "home",
+        name: "首页",
+        icon: <HomeOutlined />,
+        // authority: [],
         routes: [
           {
-            path: "/home",
-            name: "首页",
-            icon: <HomeOutlined />,
-            // authority: [],
-            routes: [
-              {
-                path: "/home/manage",
-                name: "首页管理",
-                component: load(() => import("../pages/home/Home")),
-              },
-              {
-                path: "/home",
-                redirect: "/home/manage",
-              },
-            ],
-          },
-          {
-            path: "/chart",
-            name: "图表",
-            icon: <PieChartOutlined />,
-            // authority: [],
-            routes: [
-              {
-                path: "/chart/manage",
-                name: "图表",
-                component: load(() => import("../pages/charts/Chart")),
-              },
-              {
-                path: "/chart",
-                redirect: "/chart/manage",
-              },
-            ],
-          },
-          {
-            path: "/table",
-            name: "布局",
-            icon: <ContainerOutlined />,
-            // authority: [],
-            routes: [
-              {
-                path: "/table/manage",
-                name: "布局管理",
-                component: load(() => import("../pages/table/Table")),
-              },
-              {
-                path: "/table",
-                redirect: "/table/manage",
-              },
-            ],
-          },
-          {
-            path: "/",
-            redirect: "/home",
+            name: "首页管理",
+            index: true,
+            component: load(() => import("../pages/home/Home")),
           },
         ],
       },
-      // {
-      //   component: dynamicWrapper(app, [], () => import("../pages/NoFoundPage")),
-      // },
+      {
+        path: "chart",
+        name: "图表",
+        icon: <PieChartOutlined />,
+        // authority: [],
+        routes: [
+          {
+            path: "manage",
+            name: "图表",
+            component: load(() => import("../pages/charts/Chart")),
+          },
+        ],
+      },
+      {
+        path: "table",
+        name: "布局",
+        icon: <ContainerOutlined />,
+        // authority: [],
+        routes: [
+          {
+            path: "manage",
+            name: "布局管理",
+            component: load(() => import("../pages/table/Table")),
+          },
+        ],
+      },
     ],
   },
   // {

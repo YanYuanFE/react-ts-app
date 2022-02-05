@@ -1,15 +1,14 @@
 import React, { useState } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { login } from "@/services/auth";
 import LoginForm from "./components";
 import { useRequest } from "@/services/useRequest";
 import { getPageQuery } from "@/utils/utils";
-import { LoginParams } from "@/pages/auth/data";
 
 const { Tab, Password, Mobile, Submit } = LoginForm;
 
 const Login = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [type, setType] = useState("mobile");
   const { loading, run } = useRequest(login, {
     manual: true,
@@ -34,7 +33,7 @@ const Login = () => {
             return;
           }
         }
-        history.replace(redirect || "/");
+        navigate(redirect || "/");
       }
     },
   });
@@ -42,7 +41,7 @@ const Login = () => {
   const handleSubmit = (values: { [key: string]: any }) => {
     // run(values as LoginParams);
     localStorage.setItem("x-token", "user");
-    history.replace("/");
+    navigate("/");
   };
 
   return (

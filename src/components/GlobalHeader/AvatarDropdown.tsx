@@ -1,14 +1,14 @@
 import { LogoutOutlined, SettingOutlined } from "@ant-design/icons";
 import { Avatar, Menu, Spin } from "antd";
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import HeaderDropdown from "../HeaderDropdown";
 import avatar from "../../assets/logo.svg";
 import { useUserContainer } from "@/contexts/user";
 
 const AvatarDropdown = ({ menu }: { menu?: boolean }) => {
   const { user } = useUserContainer();
-  const history = useHistory();
+  const navigate = useNavigate();
   const onMenuClick = (event: {
     key: React.Key;
     keyPath: React.Key[];
@@ -21,12 +21,12 @@ const AvatarDropdown = ({ menu }: { menu?: boolean }) => {
     }
 
     if (key === "settings") {
-      history.push("/settings");
+      navigate("/settings");
 
       return;
     }
 
-    history.push(`/auth/${key}`);
+    navigate(`/auth/${key}`);
   };
 
   const menuHeaderDropdown = (

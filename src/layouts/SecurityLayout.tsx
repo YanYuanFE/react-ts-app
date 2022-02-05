@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { stringify } from "querystring";
 import { UserProvider } from "@/contexts/user";
 
@@ -35,13 +35,13 @@ const SecurityLayout: React.FC<any> = ({ children }) => {
   // }
 
   if (!isLogin && window.location.pathname !== "/auth/login") {
-    return <Redirect to={`/auth/login?${queryString}`} />;
+    return <Navigate to={`/auth/login?${queryString}`} />;
   }
   if (!isLogin && window.location.pathname !== "/") {
-    return <Redirect to="/auth/login" />;
+    return <Navigate to="/auth/login" />;
   }
   if (isLogin && window.location.pathname === "/auth/login") {
-    return <Redirect to="/" />;
+    return <Navigate to="/" />;
   }
 
   return (

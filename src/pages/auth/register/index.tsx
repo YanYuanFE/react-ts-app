@@ -1,6 +1,6 @@
 import { Button, Form, Input, Popover, Progress, Select, Tooltip } from "antd";
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const FormItem = Form.Item;
 const { Option } = Select;
@@ -48,7 +48,6 @@ const passwordProgressMap: {
 };
 
 const Register = () => {
-  const history = useHistory();
   const [visible, setvisible] = useState(false);
   const [prefix, setprefix] = useState("86");
   const [popover, setpopover] = useState(false);

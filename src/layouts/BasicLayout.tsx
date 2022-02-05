@@ -1,13 +1,13 @@
 import ProLayout, { DefaultFooter, MenuDataItem, BasicLayoutProps as ProLayoutProps } from "@ant-design/pro-layout";
 import React, { ReactNode } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Result, Button } from "antd";
 import Authorized from "@/components/Authorized";
 import RightContent from "@/components/GlobalHeader/RightContent";
 import { getAuthorityFromRouter } from "@/utils/utils";
 import logo from "@/assets/logo.svg";
 import defaultSettings from "@/common/setting";
-import { useUserContainer } from "@/contexts/user";
+import { UserProvider, useUserContainer } from "@/contexts/user";
 import { IRouter } from "@/common/router";
 
 const noMatch = (
@@ -44,7 +44,7 @@ export interface BasicLayoutProps extends ProLayoutProps {
 }
 
 const BasicLayout = (props: BasicLayoutProps) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { user } = useUserContainer();
   const {
     children,
@@ -62,7 +62,7 @@ const BasicLayout = (props: BasicLayoutProps) => {
     <ProLayout
       locale={"zh-CN"}
       logo={logo}
-      onMenuHeaderClick={() => history.push("/")}
+      onMenuHeaderClick={() => navigate("/")}
       menuItemRender={(menuItemProps, defaultDom) => {
         if (menuItemProps.isUrl || !menuItemProps.path) {
           return defaultDom;
@@ -95,4 +95,12 @@ const BasicLayout = (props: BasicLayoutProps) => {
   );
 };
 
-export default BasicLayout;
+const MustUser = (props: any) => {
+  return (
+    <UserProvider>
+      <BasicLayout {...props}/>
+    </UserProvider>
+  );
+};
+
+export default MustUser;
